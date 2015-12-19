@@ -1,0 +1,19 @@
+#!/bin/bash
+for i in {1..10}
+do
+	CALL=`date +%s%N`
+	EXE=`./aufruf_c`
+	EXE=$EXE"000"
+	DIFF=$(echo "$EXE- $CALL" | bc)
+	DIFF2=$(echo "$DIFF / 1000000" | bc)
+	echo "Aufruf C-Programm: "$DIFF"ns ("$DIFF2"ms)"
+done
+for i in {1..10}
+do
+	CALL=`date +%s%N`
+	EXE=`java aufruf_java`
+	EXE=$EXE"000000"
+	DIFF=$(echo "$EXE- $CALL" | bc)
+	DIFF2=$(echo "$DIFF / 1000000" | bc)
+	echo "Aufruf Java-Programm: "$DIFF"ns ("$DIFF2"ms)"
+done
